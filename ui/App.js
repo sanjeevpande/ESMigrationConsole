@@ -4,6 +4,10 @@ import './App.css';
 import PageHeader from '@atlaskit/page-header';
 import Button, { ButtonGroup } from '@atlaskit/button';
 import Textfield from '@atlaskit/textfield';
+import DynamicTable from '@atlaskit/dynamic-table';
+import Lozenge from '@atlaskit/lozenge';
+
+import { caption, head } from './TableConstants';
 
 import TenantSelect from './TenantSelect';
 
@@ -12,6 +16,7 @@ function App() {
 	let [tenants, setTenants] = useState([]);
 	let [source, setSource] = useState('http://localhost:9600');
 	let [destination, setDestination] = useState('http://localhost:9200');
+	let [rows, setRows] = useState([]);
 
 	const makeReindexCall = (indexType) => {
 		if(!tenants.length) {
@@ -29,6 +34,34 @@ function App() {
 		}).then(function(data) {
 			console.log('Created Gist:', data.html_url);
 		});
+
+		let _rows = [];
+
+		let appearance = (indexType === 'execution') ? 'success' : ( (indexType === 'project') ? 'moved' : 'new');
+
+		tenants.forEach((tenant) => {
+			_rows.push({
+				cells: [
+					{
+						key: tenant.value,
+						content: tenant.value
+					},
+					{
+						key: 'indexType',
+						content: (<Lozenge appearance={appearance}>{indexType}</Lozenge>)
+					},
+					{
+						key: 'checkStatus',
+						content: 'checkStatus'
+					},
+					{
+						key: 'cancel',
+						content: 'cancel'
+					},
+				]
+			});
+		});
+		setRows(_rows);
 	}
 
   	return (
@@ -61,6 +94,13 @@ function App() {
 			    		makeReindexCall('version')
 			    	}}>Reindex Versions</Button>
 			    </ButtonGroup>
+			    <div style={{width: '80%', marginTop: '40px'}}>
+			    	<DynamicTable
+			          caption={caption}
+			          head={head}
+			          rows={rows}
+			        />
+			    </div>
 			</div>
 	    </div>
   	);

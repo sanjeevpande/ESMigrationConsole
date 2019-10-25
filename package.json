@@ -14,6 +14,8 @@
   "license": "ISC",
   "dependencies": {
     "@atlaskit/button": "^13.3.3",
+    "@atlaskit/dynamic-table": "^13.5.0",
+    "@atlaskit/lozenge": "^9.1.1",
     "@atlaskit/page-header": "^9.0.14",
     "@atlaskit/select": "^10.2.0",
     "@atlaskit/textfield": "^3.1.2",
