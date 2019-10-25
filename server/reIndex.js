@@ -2,13 +2,13 @@
 
 var restler = require('restler');
 
-var reindexRequest = (tenantId, indexType) => {
+var reindexRequest = (tenantId, indexType, source) => {
 	return {
 		"source": {
 			"remote": {
-		 		"host": "http://localhost:9600"
+		 		"host": source
 			},
-			"index": "index4",
+			"index": "zfj-tenants",
 			"query": {
 				"bool": {
 				  "must": [
@@ -27,7 +27,7 @@ var reindexRequest = (tenantId, indexType) => {
 			}
 		},
 		"dest": {
-			"index": "index7"
+			"index": "zfj-tenants"
 		},
 		"script": {
 			"source": "ctx._source.zfjIndexType = '" + indexType + "'"
@@ -39,6 +39,8 @@ var reIndex = function(req, res) {
 	
 	var tenants = req.body.tenants;
 	var indexType = req.body.indexType;
+	var source = req.body.source;
+	var dest = req.body.destination;
 
 	if(!tenants.length) {
 		res.send('Tenant id not found');
@@ -47,12 +49,9 @@ var reIndex = function(req, res) {
 		
 		var tenantId = tenant.value;
 
-		var reindexData = reindexRequest(tenantId, indexType);
+		var reindexData = reindexRequest(tenantId, indexType, source);
 
-		res.send(JSON.stringify(reindexData));
-		return;
-
-		restler.post('http://localhost:9200/_reindex', {
+		restler.post(dest + '/_reindex', {
 			headers: {
 			    'Accept': 'application/json, text/plain, */*',
 			    'Content-Type': 'application/json'

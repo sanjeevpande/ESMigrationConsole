@@ -4,7 +4,7 @@ import React from 'react';
 import { AsyncSelect } from '@atlaskit/select';
 
 const tenants = [
-  { label: 'a024a968-3f4a-3647-a09b-961d15c42233', value: 'a024a968-3f4a-3647-a09b-961d15c42233', extra: 'extra1' }
+  { label: '494da344-d098-3782-893b-04cea8a7265c', value: '494da344-d098-3782-893b-04cea8a7265c', extra: 'extra1' }
 ];
 
 const filterTenants = (inputValue) =>
