@@ -35,9 +35,9 @@ function App() {
 			console.log('Created Gist:', data.html_url);
 		});
 
-		let _rows = [];
-
 		let appearance = (indexType === 'execution') ? 'success' : ( (indexType === 'project') ? 'moved' : 'new');
+
+		let _rows = [];
 
 		tenants.forEach((tenant) => {
 			_rows.push({
@@ -57,11 +57,12 @@ function App() {
 					{
 						key: 'cancel',
 						content: 'cancel'
-					},
+					}
 				]
 			});
 		});
-		setRows(_rows);
+
+		setRows(rows.concat(_rows));
 	}
 
   	return (
@@ -73,11 +74,15 @@ function App() {
 				<div style={{width: '40%', marginBottom: '20px', display: 'flex', justifyContent: 'space-between'}}>
 					<div style={{flexBasis: '49%'}} className="source">
 						<label htmlFor="source">Source</label>
-			        	<Textfield onChange={setSource} name="source" placeholder="Source" value={source} />
+			        	<Textfield onChange={(ev) => {
+			        		setSource(ev.target.value);
+			        	}} name="source" placeholder="Source" value={source} />
 					</div>
 					<div style={{flexBasis: '49%'}} className="dest">
 						<label htmlFor="dest">Destination</label>
-			        	<Textfield onChange={setDestination} name="dest" placeholder="Destination" value={destination} />
+			        	<Textfield onChange={(ev) => {
+			        		setDestination(ev.target.value);
+			        	}} name="dest" placeholder="Destination" value={destination} />
 					</div>
 				</div>
 				<div style={{width: '40%', marginBottom: '20px'}}>
