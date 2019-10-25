@@ -48,7 +48,7 @@ function App() {
 					</div>
 				</div>
 				<div style={{width: '40%', marginBottom: '20px'}}>
-		    		<TenantSelect setTenants={setTenants} />
+		    		<TenantSelect source={source} setTenants={setTenants} />
 		    	</div>
 		    	<ButtonGroup appearance="primary">
 			    	<Button onClick={() => {

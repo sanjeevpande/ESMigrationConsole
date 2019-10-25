@@ -3,26 +3,39 @@
 import React from 'react';
 import { AsyncSelect } from '@atlaskit/select';
 
-const tenants = [
-  { label: '494da344-d098-3782-893b-04cea8a7265c', value: '494da344-d098-3782-893b-04cea8a7265c', extra: 'extra1' }
-];
-
-const filterTenants = (inputValue) =>
-  tenants.filter(i => i.label.toLowerCase().includes(inputValue.toLowerCase()));
-
-const promiseOptions = inputValue =>
-	new Promise(resolve => {
-		setTimeout(() => {
-		  resolve(filterTenants(inputValue));
-		}, 1000);
-	});
-
 function TenantSelect(props) {
 	const onTenantSelect = (item) => {
 		props.setTenants(item);
 	}
+
+	let tenants = [];
+
+	const filterTenants = (data) =>
+	  tenants = data;
+
+	const promiseOptions = inputValue =>
+		new Promise(resolve => {
+			if(!inputValue) {
+				resolve(filterTenants([]));
+				return;
+			}
+			fetch('tenantSearch', {
+				method: 'POST',
+				headers: {
+				    'Accept': 'application/json, text/plain, */*',
+				    'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({input: inputValue, source: props.source})
+			}).then(function(response) {
+				return response.json();
+			}).then(function(data) {
+				resolve(filterTenants(data));
+			});
+		});
+
 	return (
 		<AsyncSelect
+			options={tenants}
 			onChange={(item) => onTenantSelect(item)}
 			isMulti
 			cacheOptions
