@@ -6,21 +6,21 @@ export const createHead = () => {
       {
         key: 'tenantId',
         content: 'Tenant Id',
-        width: 30
+        width: 40
       },
       {
         key: 'indexType',
         content: 'Index Type',
-        width: 30
+        width: 20
       },
       {
         key: 'checkStatus',
         content: 'Check Status',
-        width: 30
+        width: 20
       },
       {
-        key: 'cancel',
-        content: 'Cancel',
+        key: 'stop',
+        content: 'Stop Reindexing',
         width: 10
       }
     ],

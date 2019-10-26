@@ -40,7 +40,15 @@
     react-beautiful-dnd "^10.0.2"
     tslib "^1.9.3"
 
-"@atlaskit/icon@^19.0.6":
+"@atlaskit/icon-object@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@atlaskit/icon-object/-/icon-object-5.0.0.tgz#8e1ce3352efb05475359a7329d2fbe32bf9ba231"
+  integrity sha512-Bj0pBdLwXwYzt6RILLJ/ZPhrGcbd7Ff/zuyXjrcRj0i22W0PBr1Vs4HSrJXCo2ZLZrTQj4rbMmHZUpwH79hfag==
+  dependencies:
+    "@atlaskit/theme" "^9.1.6"
+    tslib "^1.9.3"
+
+"@atlaskit/icon@^19.0.6", "@atlaskit/icon@^19.0.8":
   version "19.0.8"
   resolved "https://registry.yarnpkg.com/@atlaskit/icon/-/icon-19.0.8.tgz#9628f6f5d9bf93baedfeb006d4fc719d008e1401"
   integrity sha512-SpxL7y79Gr1F7diitMvbk55y1qISiyEF22mnLPr8ZbWtnP6FwuQgN2FU/yWikaBWuPNAjv3SE9E3K+ycbB1j1A==
@@ -68,12 +76,43 @@
     "@babel/runtime" "^7.0.0"
     tslib "^1.9.3"
 
+"@atlaskit/page@^11.0.9":
+  version "11.0.9"
+  resolved "https://registry.yarnpkg.com/@atlaskit/page/-/page-11.0.9.tgz#856e63f29a85f36e11b735ead6a3497d8d7d7259"
+  integrity sha512-bXoyZjZCVqD/9TDaVbH+QinW9YTQurCU/zNQxJCFheAFtwOkxBMv8h2lL2xsKY17THIQ2sUfe8W8usyB2z5uZg==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    tslib "^1.9.3"
+
 "@atlaskit/pagination@^12.0.16":
   version "12.0.16"
   resolved "https://registry.yarnpkg.com/@atlaskit/pagination/-/pagination-12.0.16.tgz#b4562d3847f3b38dfa2db90e3a4bea04ee5c2bfc"
   integrity sha512-6tvSubNHBNTG9SpEtQ9UgdWCve/ODcmkZMSTys0nQUBGqtHi3b5+rPKfWo8azh5b0rIVFe5pFZv4LI1BWjBdzA==
   dependencies:
     "@atlaskit/analytics-next" "^6.3.1"
+    "@atlaskit/button" "^13.3.3"
+    "@atlaskit/icon" "^19.0.6"
+    "@atlaskit/theme" "^9.2.4"
+    "@babel/runtime" "^7.0.0"
+    tslib "^1.9.3"
+
+"@atlaskit/right-side-panel@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@atlaskit/right-side-panel/-/right-side-panel-0.3.0.tgz#71fae2285c51c49a85537d09a73d9d4b0e100066"
+  integrity sha512-0lp2SUFZOgp7LiNmoo3ab+AsP+BlZoAW31r1GEsLpfTeyjeQoTzkHgxWnOhxR8BOUbq8xkCI1WWL++ob5rZY6Q==
+  dependencies:
+    "@atlaskit/theme" "^9.2.4"
+    "@emotion/core" "^10.0.9"
+    "@emotion/styled" "^10.0.7"
+    exenv "^1.2.2"
+    lodash.debounce "^4.0.8"
+    react-transition-group "^2.2.1"
+
+"@atlaskit/section-message@^4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@atlaskit/section-message/-/section-message-4.1.1.tgz#189e494769f1f9bf16e0af140bf0df6c5b0b10d5"
+  integrity sha512-y6K1rKHB6YIZ6RhycY4EV9WbD75qCzQF2vLmtggky9jOaER0WOtQx/MHfd/FXEZrJ/WGVF0Pm57jsM/xA36iFw==
+  dependencies:
     "@atlaskit/button" "^13.3.3"
     "@atlaskit/icon" "^19.0.6"
     "@atlaskit/theme" "^9.2.4"
@@ -1110,7 +1149,7 @@
   resolved "https://registry.yarnpkg.com/@emotion/hash/-/hash-0.7.3.tgz#a166882c81c0c6040975dd30df24fae8549bd96f"
   integrity sha512-14ZVlsB9akwvydAdaEnVnvqu6J2P6ySv39hYyl/aoB6w/V+bXX0tay8cF6paqbgZsN2n5Xh15uF4pE+GvE+itw==
 
-"@emotion/is-prop-valid@^0.8.1":
+"@emotion/is-prop-valid@0.8.3", "@emotion/is-prop-valid@^0.8.1":
   version "0.8.3"
   resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-0.8.3.tgz#cbe62ddbea08aa022cdf72da3971570a33190d29"
   integrity sha512-We7VBiltAJ70KQA0dWkdPMXnYoizlxOXpvtjmu5/MBnExd+u0PGgV27WCYanmLAbCwAU30Le/xA0CQs/F/Otig==
@@ -1137,6 +1176,24 @@
   version "0.9.3"
   resolved "https://registry.yarnpkg.com/@emotion/sheet/-/sheet-0.9.3.tgz#689f135ecf87d3c650ed0c4f5ddcbe579883564a"
   integrity sha512-c3Q6V7Df7jfwSq5AzQWbXHa5soeE4F5cbqi40xn0CzXxWW9/6Mxq48WJEtqfWzbZtW9odZdnRAkwCQwN12ob4A==
+
+"@emotion/styled-base@^10.0.22":
+  version "10.0.22"
+  resolved "https://registry.yarnpkg.com/@emotion/styled-base/-/styled-base-10.0.22.tgz#2b6e86e477ed81bd74aa6cef5f403d500503df5b"
+  integrity sha512-ikSuAcz86BcmlZM5EysqCH0EUssYm5ardrWNVM3Ri5ODpOlKPrT//jVozJU2uK3q5GRcqZHLqagP/nd9beNUfQ==
+  dependencies:
+    "@babel/runtime" "^7.5.5"
+    "@emotion/is-prop-valid" "0.8.3"
+    "@emotion/serialize" "^0.11.12"
+    "@emotion/utils" "0.11.2"
+
+"@emotion/styled@^10.0.7":
+  version "10.0.22"
+  resolved "https://registry.yarnpkg.com/@emotion/styled/-/styled-10.0.22.tgz#ee398710876ebda5a418f84359516c6a1c5c41b1"
+  integrity sha512-3+dnBk8NjXnddI8Gi2VJLMmup0bCG8HQkZLaeNky+GSLl8VyxQfuaK5I5aDVvgQ3UzkxrcZrFB3vHYU/iUakBA==
+  dependencies:
+    "@emotion/styled-base" "^10.0.22"
+    babel-plugin-emotion "^10.0.22"
 
 "@emotion/stylis@0.8.4":
   version "0.8.4"
@@ -6307,6 +6364,11 @@ lodash._reinterpolate@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
   integrity sha1-DM8tiRZq8Ds2Y8eWU4t1rG4RTZ0=
+
+lodash.debounce@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
+  integrity sha1-gteb/zCmfEAF/9XiUVMArZyk168=
 
 lodash.memoize@^4.1.2:
   version "4.1.2"

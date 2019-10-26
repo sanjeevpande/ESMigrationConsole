@@ -31,3 +31,14 @@
     transform: rotate(360deg);
   }
 }
+
+.status-table tbody tr > td:nth-child(3), .status-table tbody tr > td:nth-child(4) {
+  padding-left: 30px;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0 0 6px;
+  margin-bottom: 6px;
+}
