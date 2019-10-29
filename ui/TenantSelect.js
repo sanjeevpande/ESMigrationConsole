@@ -10,6 +10,11 @@ function TenantSelect(props) {
 
 	let tenants = [];
 
+	let tenantDefaultValue = {
+		label: '494da344-d098-3782-893b-04cea8a7265c',
+		value: '494da344-d098-3782-893b-04cea8a7265c'
+	};
+
 	const filterTenants = (data) =>
 	  tenants = data;
 
@@ -35,6 +40,7 @@ function TenantSelect(props) {
 
 	return (
 		<AsyncSelect
+			defaultValue={tenantDefaultValue}
 			options={tenants}
 			onChange={(item) => onTenantSelect(item)}
 			isMulti
