@@ -42,3 +42,7 @@
   padding: 6px 0 0 6px;
   margin-bottom: 6px;
 }
+.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}

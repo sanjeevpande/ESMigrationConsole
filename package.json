@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "@atlaskit/button": "^13.3.3",
+    "@atlaskit/checkbox": "^10.1.2",
     "@atlaskit/dynamic-table": "^13.5.0",
     "@atlaskit/icon": "^19.0.8",
     "@atlaskit/icon-object": "^5.0.0",

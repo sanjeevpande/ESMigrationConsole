@@ -20,8 +20,12 @@ app.post('/tenantSearch', (req, res) => {
 	tenantSearch(req, res);
 });
 
+app.post('/reindexAll', (req, res) => {
+	reIndex.allTenants(req, res);
+});
+
 app.post('/reindex', (req, res) => {
-	reIndex(req, res);
+	reIndex.perTenant(req, res);
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
