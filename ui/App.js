@@ -142,6 +142,7 @@ function App() {
 	    	<RightPanel isOpen={isPanelOpen} closePanel={closePanel} />
 	    	<PageHeader>
 				ES Migration Console
+				<img style={{marginLeft: '-24px', marginTop: '-14px', position: 'absolute'}} width="20px" height="20px" src="./baba.svg" />
 			</PageHeader>
 			<div style={{width: '75%', marginTop: '40px'}}>
 				<div style={{marginBottom: '20px', display: 'flex', justifyContent: 'space-between'}}>
