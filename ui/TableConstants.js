@@ -1,4 +1,4 @@
-export const caption = 'Migration Status';
+export const caption = 'Ongoing status';
 
 export const createHead = () => {
   return {
@@ -14,13 +14,13 @@ export const createHead = () => {
         width: 20
       },
       {
-        key: 'checkStatus',
-        content: 'Check Status',
+        key: 'status',
+        content: 'Status',
         width: 20
       },
       {
-        key: 'stop',
-        content: 'Stop Reindexing',
+        key: 'refresh',
+        content: 'Refresh Status',
         width: 10
       }
     ],

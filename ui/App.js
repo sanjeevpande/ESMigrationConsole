@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import PageHeader from '@atlaskit/page-header';
@@ -11,11 +11,20 @@ import { caption, head } from './TableConstants';
 import TenantSelect from './TenantSelect';
 import CrossCircleIcon from '@atlaskit/icon/glyph/cross-circle';
 import Page24Icon from '@atlaskit/icon-object/glyph/page/24';
+import RefreshIcon from '@atlaskit/icon/glyph/refresh';
 import { Checkbox } from '@atlaskit/checkbox';
 
 function App() {
+
+	let tenantDefaultValue = [{
+		label: '494da344-d098-3782-893b-04cea8a7265c',
+		value: '494da344-d098-3782-893b-04cea8a7265c'
+	}, {
+		label: '249da344-d098-3782-893b-04cea8a7265c',
+		value: '249da344-d098-3782-893b-04cea8a7265c'
+	}];
 	
-	let [tenants, setTenants] = useState([]);
+	let [tenants, setTenants] = useState(tenantDefaultValue);
 	let [source, setSource] = useState('http://localhost:9600');
 	let [destination, setDestination] = useState('http://localhost:9200');
 	let [sourceIndex, setSourceIndex] = useState('index4');
@@ -23,6 +32,10 @@ function App() {
 	let [rows, setRows] = useState([]);
 	let [isPanelOpen, setIsPanelOpen] = useState(false);
 	let [selectAllTenants, setSelectAllTenants] = useState(false);
+
+	useEffect(() => {
+		refreshStatus();
+	}, []);
 
 	const handlePanelOpen = () => {
 		setIsPanelOpen(true);
@@ -96,37 +109,47 @@ function App() {
 		}).then(function(response) {
 			return response.json();
 		}).then(function(res) {
-			console.log('Response:', res.data);
+			handleTenantResponse(res);
 		});
+	}
 
-		let appearance = getLozengesColor(indexType);
-
+	const handleTenantResponse = (res) => {
 		let _rows = [];
-
-		tenants.forEach((tenant) => {
+		for(let record in res) {
+			let obj = res[record];
+			let appearance = getLozengesColor(obj.indexType);
 			_rows.push({
 				cells: [
 					{
-						key: tenant.value,
-						content: tenant.value
+						key: obj.tenantId,
+						content: obj.tenantId
 					},
 					{
 						key: 'indexType',
-						content: (<Lozenge appearance={appearance}>{indexType}</Lozenge>)
+						content: (<Lozenge appearance={appearance}>{obj.indexType}</Lozenge>)
 					},
 					{
-						key: 'checkStatus',
-						content: (<div onClick={handlePanelOpen}><Page24Icon /></div>)
+						key: 'status',
+						content: (<Lozenge appearance={obj.status}>{obj.status}</Lozenge>)
 					},
 					{
-						key: 'cancel',
-						content: (<div style={{color: '#BF2600'}}><CrossCircleIcon /></div>)
+						key: 'refresh',
+						content: (<div onClick={refreshStatus} style={{color: '#106C4B'}}><RefreshIcon /></div>)
 					}
 				]
 			});
-		});
+		}
+		setRows(_rows);
+	}
 
-		setRows(rows.concat(_rows));
+	const refreshStatus = () => {
+		fetch('tenantStatus', {
+			method: 'GET'
+		}).then(function(response) {
+			return response.json();
+		}).then(function(res) {
+			handleTenantResponse(res);
+		});
 	}
 	
 	const makeReindexCall = (indexType) => {
@@ -174,7 +197,7 @@ function App() {
 					</div>
 				</div>
 				<div style={{marginBottom: '20px'}} className={selectAllTenants ? 'disabled' : ''}>
-		    		<TenantSelect source={source} setTenants={setTenants} />
+		    		<TenantSelect tenantDefaultValue={tenantDefaultValue} source={source} sourceIndex={sourceIndex} setTenants={setTenants} />
 		    	</div>
 		    	<div style={{marginBottom: '20px', float: 'right', display: 'flex', alignItems: 'center'}}>
 		    		<div style={{marginRight: '8px'}}>
@@ -196,6 +219,9 @@ function App() {
 					    	<Button onClick={() => {
 					    		makeReindexCall('version')
 					    	}}>Reindex Versions</Button>
+					    	<Button onClick={() => {
+					    		makeReindexCall('component')
+					    	}}>Reindex Components</Button>
 					    </ButtonGroup>
 					</div>
 		    	</div>

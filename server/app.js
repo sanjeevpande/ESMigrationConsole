@@ -28,4 +28,12 @@ app.post('/reindex', (req, res) => {
 	reIndex.perTenant(req, res);
 });
 
+app.get('/tenantStatus', (req, res) => {
+	reIndex.getTenantStatus(req, res);
+});
+
+app.post('/status', (req, res) => {
+	reIndex.getStatus(req, res);
+});
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

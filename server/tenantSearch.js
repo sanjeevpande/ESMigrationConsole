@@ -29,13 +29,14 @@ var tenantSearch = function(req, res) {
 	
 	var tenantId = req.body.input;
 	var source = req.body.source;
+	var sourceIndex = req.body.sourceIndex;
 
 	if(!tenantId) {
 		res.send('Tenant id not found');
 	}
 	var searchRequest = tenantSearchRequest(tenantId);
 
-	restler.post(source + '/zfj-tenants/_search', {
+	restler.post(source + '/' + sourceIndex + '/_search', {
 		headers: {
 		    'Accept': 'application/json, text/plain, */*',
 		    'Content-Type': 'application/json'
