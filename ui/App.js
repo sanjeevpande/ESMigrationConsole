@@ -65,31 +65,8 @@ function App() {
 		}).then(function(response) {
 			return response.json();
 		}).then(function(res) {
-			console.log('Response:', res.data);
+			handleTenantResponse(res);
 		});
-
-		let appearance = getLozengesColor(indexType);
-
-		let _rows = [];
-
-		_rows.push({
-			cells: [
-				{
-					key: '-',
-					content: 'Reindexing all Tenants'
-				},
-				{
-					key: 'indexType',
-					content: (<Lozenge appearance={appearance}>{indexType}</Lozenge>)
-				},
-				{
-					key: 'checkStatus',
-					content: (<div onClick={handlePanelOpen}><Page24Icon /></div>)
-				}
-			]
-		});
-
-		setRows(rows.concat(_rows));
 	}
 
 	const reIndexPerTenant = (indexType) => {
@@ -119,7 +96,7 @@ function App() {
 				<div>
 		    		<ButtonGroup appearance="warning">
 				    	<Button onClick={refreshStatus}>Check Tenant Status</Button>
-				    	<Button onClick={checkReindexStatus}>Check Ongoing Reindexes</Button>
+				    	<Button onClick={checkOngoingReindexStatus}>Check Ongoing Reindexes</Button>
 				    </ButtonGroup>
 				</div>
 			</div>
@@ -151,7 +128,7 @@ function App() {
 		setRows(_rows);
 	}
 
-	const checkReindexStatus = () => {
+	const checkOngoingReindexStatus = () => {
 		fetch('ongoingReindexStatus', {
 			method: 'POST',
 			headers: {

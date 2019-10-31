@@ -22,12 +22,25 @@ var reIndex = {
 
 	    var _data = JSON.stringify(reindexData);
 
+	    var record = 'record-all' + recordNo++;
+
+		allTenantsStatus[record] = {
+			status: 'inprogress',
+			tenantId: 'All Tenants',
+			indexType
+		};
+
 		restler.post(dest + '/_reindex', {
 			'headers': headers,
 			'data': _data
 		}).on('complete', function(data, response) {
-			res.send(JSON.stringify({data}));
+			if(response.statusCode == 200 || response.statusCode == 201) {
+				allTenantsStatus[record].status = 'success';
+			} else {
+				allTenantsStatus[record].status = 'moved';
+			}
 		});
+		res.send(JSON.stringify(allTenantsStatus));
 	},
 	perTenant: (req, res) => {
 		var tenants = req.body.tenants;
@@ -64,7 +77,6 @@ var reIndex = {
 				'headers': headers,
 				'data': _data
 			}).on('complete', function(data, response) {
-				//
 				if(response.statusCode == 200 || response.statusCode == 201) {
 					allTenantsStatus[record].status = 'success';
 				} else {
