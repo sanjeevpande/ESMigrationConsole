@@ -32,6 +32,7 @@ function App() {
 	let [rows, setRows] = useState([]);
 	let [isPanelOpen, setIsPanelOpen] = useState(false);
 	let [selectAllTenants, setSelectAllTenants] = useState(false);
+	let [rightPanelData, setRightPanelData] = useState({});
 
 	useEffect(() => {
 		refreshStatus();
@@ -84,10 +85,6 @@ function App() {
 				{
 					key: 'checkStatus',
 					content: (<div onClick={handlePanelOpen}><Page24Icon /></div>)
-				},
-				{
-					key: 'cancel',
-					content: (<div style={{color: '#BF2600'}}><CrossCircleIcon /></div>)
 				}
 			]
 		});
@@ -113,6 +110,22 @@ function App() {
 		});
 	}
 
+	const GridCaption = () => {
+		return (
+			<div style={{display: 'flex', justifyContent: 'space-between'}}>
+				<div>
+					<label style={{fontSize: '1.4em'}}>Ongoing status</label>
+				</div>
+				<div>
+		    		<ButtonGroup appearance="warning">
+				    	<Button onClick={refreshStatus}>Check Tenant Status</Button>
+				    	<Button onClick={checkReindexStatus}>Check Ongoing Reindexes</Button>
+				    </ButtonGroup>
+				</div>
+			</div>
+		);
+	}
+
 	const handleTenantResponse = (res) => {
 		let _rows = [];
 		for(let record in res) {
@@ -131,15 +144,28 @@ function App() {
 					{
 						key: 'status',
 						content: (<Lozenge appearance={obj.status}>{obj.status}</Lozenge>)
-					},
-					{
-						key: 'refresh',
-						content: (<div onClick={refreshStatus} style={{color: '#106C4B'}}><RefreshIcon /></div>)
 					}
 				]
 			});
 		}
 		setRows(_rows);
+	}
+
+	const checkReindexStatus = () => {
+		fetch('ongoingReindexStatus', {
+			method: 'POST',
+			headers: {
+			    'Accept': 'application/json, text/plain, */*',
+			    'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({destination})
+		}).then(function(response) {
+			return response.json();
+		}).then(function(res) {
+			handleTenantResponse(res.allTenantsStatus);
+			setRightPanelData(res.data.nodes);
+			setIsPanelOpen(true);
+		});
 	}
 
 	const refreshStatus = () => {
@@ -162,7 +188,7 @@ function App() {
 
   	return (
 	    <div className="App">
-	    	<RightPanel isOpen={isPanelOpen} closePanel={closePanel} />
+	    	<RightPanel data={rightPanelData} isOpen={isPanelOpen} closePanel={closePanel} />
 	    	<PageHeader>
 				ES Migration Console
 				<img style={{marginLeft: '5px', marginTop: '-12px', position: 'absolute'}} width="40px" height="40px" src="./baba.svg" />
@@ -227,7 +253,7 @@ function App() {
 		    	</div>
 			    <div className="status-table" style={{marginBottom: '20px', marginTop: '60px'}}>
 			    	<DynamicTable
-			          caption={caption}
+			          caption={<GridCaption />}
 			          head={head}
 			          rows={rows}
 			        />

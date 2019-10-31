@@ -6,22 +6,17 @@ export const createHead = () => {
       {
         key: 'tenantId',
         content: 'Tenant Id',
-        width: 40
+        width: 50
       },
       {
         key: 'indexType',
         content: 'Index Type',
-        width: 20
+        width: 25
       },
       {
         key: 'status',
         content: 'Status',
-        width: 20
-      },
-      {
-        key: 'refresh',
-        content: 'Refresh Status',
-        width: 10
+        width: 25
       }
     ],
   };

@@ -77,11 +77,10 @@ var reIndex = {
 	getTenantStatus: (req, res) => {
 		res.send(JSON.stringify(allTenantsStatus));
 	},
-	getTaskStatus: (req, res) => {
-		//
+	getOngoingReindexStatus: (req, res) => {
 		var dest = req.body.destination;
 		restler.get(dest + '/_tasks?detailed=true&actions=*reindex').on('complete', function(data, response) {
-			res.send(JSON.stringify({data, wipTenants, completedTenants, failedTenants}));
+			res.send(JSON.stringify({data, allTenantsStatus}));
 		});
 	}
 };

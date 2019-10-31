@@ -46,3 +46,25 @@
   opacity: 0.4;
   pointer-events: none;
 }
+.status-table caption {
+  font-size: 1em;
+}
+.task-section {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.task-section > div {
+  font-size: 1.1em;
+}
+.task-section h4 {
+  margin-bottom: 6px;
+}
+.task-section h5 {
+  margin-bottom: 10px;
+}
+.task-section h5 > span {
+  font-size: 2em;
+}
+.task-section > div > span:nth-child(1) {
+  margin-right: 8px;
+}
