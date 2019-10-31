@@ -8,7 +8,7 @@ import Lozenge from '@atlaskit/lozenge';
 
 const Stats = ({data}) => {
 
-  if(!Object.keys(data).length) {
+  if(!data || (!Object.keys(data).length)) {
     return (
       <h4>No active tasks found</h4>
     );
