@@ -3,8 +3,6 @@ import React from 'react';
 import EditorCloseIcon from '@atlaskit/icon/glyph/editor/close';
 import { RightSidePanel, FlexContainer, ContentWrapper } from '@atlaskit/right-side-panel';
 import SectionMessage from '@atlaskit/section-message';
-import Page16Icon from '@atlaskit/icon-object/glyph/page/16';
-import PageHeader from '@atlaskit/page-header';
 import Page24Icon from '@atlaskit/icon-object/glyph/page/24';
 import Lozenge from '@atlaskit/lozenge';
 

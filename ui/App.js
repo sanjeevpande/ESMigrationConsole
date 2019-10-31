@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import PageHeader from '@atlaskit/page-header';
 import Button, { ButtonGroup } from '@atlaskit/button';
@@ -7,11 +6,8 @@ import Textfield from '@atlaskit/textfield';
 import DynamicTable from '@atlaskit/dynamic-table';
 import Lozenge from '@atlaskit/lozenge';
 import RightPanel from './RightPanel';
-import { caption, head } from './TableConstants';
+import { head } from './TableConstants';
 import TenantSelect from './TenantSelect';
-import CrossCircleIcon from '@atlaskit/icon/glyph/cross-circle';
-import Page24Icon from '@atlaskit/icon-object/glyph/page/24';
-import RefreshIcon from '@atlaskit/icon/glyph/refresh';
 import { Checkbox } from '@atlaskit/checkbox';
 
 function App() {
@@ -37,10 +33,6 @@ function App() {
 	useEffect(() => {
 		refreshStatus();
 	}, []);
-
-	const handlePanelOpen = () => {
-		setIsPanelOpen(true);
-	}
 
 	const closePanel = () => {
 		setIsPanelOpen(false);
@@ -168,7 +160,7 @@ function App() {
 	    	<RightPanel data={rightPanelData} isOpen={isPanelOpen} closePanel={closePanel} />
 	    	<PageHeader>
 				ES Migration Console
-				<img style={{marginLeft: '5px', marginTop: '-12px', position: 'absolute'}} width="40px" height="40px" src="./baba.svg" />
+				<img alt='baba logo' style={{marginLeft: '5px', marginTop: '-12px', position: 'absolute'}} width="40px" height="40px" src="./baba.svg" />
 			</PageHeader>
 			<div style={{width: '75%', marginTop: '40px'}}>
 				<div style={{marginBottom: '20px', display: 'flex', justifyContent: 'space-between'}}>
